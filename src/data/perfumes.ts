@@ -92,6 +92,8 @@ const CUSTOM_PRICE_MAP: Record<string, number> = {
   "TURKISH OUDH": 490,
   "ASIF SIGNATURE 1O": 890,
   "1000 FLOWER": 420,
+  "AFSHAN": 480,
+  
 };
 
 // 2. PRICING LOGIC
