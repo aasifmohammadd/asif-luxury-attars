@@ -1,0 +1,133 @@
+export interface PerfumeOil {
+  id: number;
+  name: string;
+  size: string;
+  price: number;
+  category: string;
+  image: string;
+}
+
+const rawPerfumesList = [
+  "1000 FLOWER", "212 SEXY MEN", "9 P.M. AFNAN", "ADVENTURE DAVIDO OF", "AFSHAN",
+  "AFTERNOON SWIM L.V.", "AL AFNAN", "AL HAMD", "AL HAMRA", "AL PASO",
+  "AL ZAHOOR", "ALI SAAB", "ALOVERA", "ALOVERA CUCUMBER", "AMBAR OUDH (HARMAIN)",
+  "AMIR AL OUD", "AMRIGE", "ANGEL PARIS", "AQ AQUA 365", "AQUA BLUE",
+  "AQUA BULGARI MARINE", "AQUA KISS ARMANI", "AQUA WAVE", "ARABIAN LAMSET", "ARABIAN NIGHT",
+  "ARABIAN TONKA MONTALE", "ARMAF LEGACY", "ARMANI AQUA DIGIO", "ARMANI CODE", "ARMANI GOLD",
+  "ASEEL", "ATTAR FULL/MOGRA", "AXE", "AZARO WANTED", "B.R. 540",
+  "BAD BOY", "BAKHOOR", "BAKHOOR AL ARAB", "BERRY BLAST", "BISCUIT",
+  "BLACK BERRY", "BLACK JAGUAR", "BLACK MAN", "BLACK MANSION", "BLACK OPIUM (B)",
+  "BLACK ROSE", "BLACK XS", "BLACK XS NEW", "BLACK XS WOMAN", "BLUE BERRY",
+  "BLUE EXTREME MAN", "BLUE FOR MAN", "BLUE GIRL", "BLUE LADY", "BLUE WAVE",
+  "BOMBSHELL", "BOSS THE SCENT", "BOSS UNLIMITED", "BOUQUET SAL", "BROWN ORCHID",
+  "BRUT", "BULGARI AQUA", "BULGARI WHITE", "BURBERRY BLACK", "BURBERRY BODY",
+  "BURBERRY CIRCUS", "BURBERRY WEEKEND", "BURNING OUDH", "BUSHRA AJMAL", "CAPHA",
+  "CAVO", "CHANCE CHANEL", "CHANEL NO 5", "CHANEL PLATINIUM", "CHARIOT",
+  "CHARLI", "CHASTITY", "CHELSEA REHAB", "CHOCO MUSK", "CHOCOLATE",
+  "CHOCOLATE SP.", "CHROME AZZARO", "CIGAR II", "CIRCUS BURRBERY", "CK 1",
+  "CK 2", "CK 2", "CK EUPHORIA", "CLASSIC OUDH", "COBRA",
+  "COCO BUTTER", "COCO LOCO", "CONFIDENCE", "COOL BLUE", "COOL WATER AQUA",
+  "COOL WATER INTENCE", "COOL WATER REBORN", "COOL WATER SEA ROSE", "COOL WATER(M)", "COOL WATER(W)",
+  "COOL WEATHER", "CR 7", "CREED SILVER MOUNTAIN", "CREED VIKING", "CREED VIKING NEW",
+  "CREED WHITE", "CUCUMBER", "D&G", "DANA", "DARBAR",
+  "DAREEJ", "DIAMOND ARMANI", "DIRHAM", "DKNY", "DOVE",
+  "DRAKAR", "DUA", "DUBAI GOLD", "DUNHILL", "DUNHILL DIZIRE",
+  "DUNHILL ICON GREY", "EMPOR LEGEND", "ERBA PURA", "ESCADA MOON SPARKLE", "ETERNAL LOVE",
+  "ETERNAL OUDH LATAFA", "ETERNITY (M)", "ETERNITY (W)", "EVER GREEN", "FAHRENHEIT DIOR",
+  "FAKHAR LATTAFA", "FAKHAR ROSE LATTAFA", "FANTASIA", "FARAZ AL DUBAI", "FARHA",
+  "FASLI GULAB", "FAST & FURIOUS GOJI BERRY", "FAWAKE", "FERRARI GOLD", "FERRARI RED",
+  "FIERCE", "FLORA MUSK", "FRAGO BLACK", "FRANCE 2000", "GALAXY",
+  "GARDEN", "GARDEN BLOOM", "GEORGEO JASMINE", "GISSAH AKOYA", "GISSAH IMPERIAL VALLEY 2",
+  "GISSAH LA LUNA", "GISSAH MAVRO", "GISSAH ONE & ONLY PINK", "GISSAH VOILA", "GIVINCHY BLUE",
+  "GIVINCHY GENTLEMEN", "GIVINCHY ORGANZA", "GLAMOUR", "GOLD SANDAL SPACIAL", "GOLDEN BOY",
+  "GOOD GIRL BLUSH", "GOOD GIRL J.P.G", "GREY CITY", "GUCCI BAMBOO", "GUCCI BLACK",
+  "GUCCI FLORA", "GUCCI GUILTY BLACK", "GUCCI GUILTY(W)", "GUCCI GUILYI (M)", "GUCCI RUSH",
+  "GULAB SPECIAL", "HAPPY CLINIC", "HARLEY DAVIDSON CLASSIC", "HAVOC", "HAWAS ICE",
+  "HEENA SHAMPO", "HINA ST", "HIS CONFUSION", "HOMME IDEAL GURELEAN", "HONEY OUDH",
+  "HOOR", "HUDSON VALLEY GISSAH", "HUGO BOSS", "I AM WHITE LATTAFA", "ICE BERG",
+  "IMAGINATION L.V.", "IMMENSITE L.V.", "INTERLUDE", "ISSY MIYAKE(M)", "ISSY MIYAKE(W)",
+  "JADOR", "JANNATUL FIRDOUS", "JASMINE", "JASMINE AF", "JASS",
+  "JEEN", "JO MALONE BLUSH SUEDE", "JO MALONE VELVET OUDH", "JO MALONE VENCENT", "JUHI",
+  "K.R.S NAYAB", "KASTURI", "KATCHI KALI", "KAYALI VANILLA 28", "KEWDA",
+  "KHALTAT", "KIWI", "L.V MATIERE NOIR", "LABBAIK", "LACOSTE GREEN",
+  "LACOSTE HOME INTENSE", "LACOSTE RED", "LAIL MALIKI", "LAVENDER", "LAZEENA",
+  "LE MALE BLACK J.P.G", "LE MALE ELIXIR J.P.G", "LECHI", "LOMANI", "LOVELY",
+  "M2", "MAD ABOUT YOU", "MADINA HARMAIN", "MAGNET", "MANIFESTO Y.S.L",
+  "MARSHAMELLOW MERINGUE", "MAXI", "METHIR NOIR L.V.", "MICHAEL KORS", "MISFIT OA TYPE",
+  "MISS DIOR", "MITTI III", "MONT BLANCK", "MT 15", "MUKHALLAT KHALID SP",
+  "MUKHALLAT MALKI", "MUKHALLAT SHAMS", "MUSK AL THARA (THIN)", "NAUGHTY NOIR", "NAZNEEN AL NUAIM TYPE",
+  "NOORA", "NOTICA VOYAGE", "ONE MILLION PACO", "ORANGE", "OUD & ROSES AAM",
+  "OUDH & ROSES", "OUDH AL AMWAAJ", "PACIFIC CHILL L.V.", "PANTEEN SHAMPOO", "PAPPAYA",
+  "PARIS HILTON", "PEACH", "PEACH ADDICT", "PEACH BLOSSOM", "PINK AMBER",
+  "PINK CHIFFON (SPECIAL EDITION)", "PINK OUDH", "PLAY BLUE", "POEM", "POISON",
+  "POLO BLUE", "POLO RED", "POLO SPORT", "PONDS", "POP THE CORK",
+  "PRECIOUS", "PREPE PRINCESS", "PRUNE VANILLA", "PURE PINK (SPECIAL EDITION)", "QAED AL FURSAN LATAFA",
+  "RAAT RANI", "RAGHBA LATTAFA", "RAMZ GOLD LATTAFA", "RAMZ LATTAFA", "RASHA",
+  "RED ANGEL", "RED APPLE", "RED HOT", "RED MILLION", "ROMANCE RASSASI",
+  "ROSE DES VENTS L.V.", "ROSE WS", "ROYAL MIRAGE", "ROYAL PROPHECY", "SABAYA",
+  "SADAF", "SAFWAN ADIL QADRI", "SALMA", "SALSABEEL NAYAB", "SAND DUNES",
+  "SECRET LOVE", "SEXY MEN", "SHARMILI", "SI ARMANI", "SILENCE",
+  "SILVER SENT", "SOFT AL REHAB", "SOFT MUSK", "SOFT PINK", "SOFT TOUCH",
+  "SPICE BOMB V/R", "STRAWBERRY", "STRONGER WITH YOU", "SULTAN", "SWEET HEART",
+  "T.F BITTER PEACH", "T.F OUDH WOOD", "T.F TUSCAN LEATHER", "T.ROSE", "TABISH",
+  "THE LOVE", "TOHFA", "TURKISH OUDH", "ULTRA MALE J.P.G.", "UNITED AZZARO",
+  "VALENTINO LUMO INTENCE", "VALENTINO V", "VAMPIRE BLADE", "VANILLA", "VANILLA OUDH",
+  "VERSACHE BLUE JEANS", "VERSACHE BRIGHT CRYSTcrystal", "VERSACHE DYLEN BLUE", "VERSACHE EROS", "VERSACHE POUR HOMME",
+  "VERSACHE PURE SEDUCTION", "VERSACHE YELLOW DIAMOND", "VICTORIA SECRET", "WANTED GIRL", "WHITE LONDON",
+  "WHITE MUSK", "WHITE OUDH", "WOODY OUDH LATAFA", "Y.S.L BLACK OPIUM", "Y.S.L.Y",
+  "YARA CANDY", "YARA PINK", "YSL BABY CAT", "YSL TUXEDO", "YUM KUNAFA",
+  "ZAM ZAM", "ZARA", "ZARA APPLEJUICE", "ZARA BLACK", "ZARA CASHMERE ROSE",
+  "ZARA GOLD", "ZARA NUDE BOUQUET", "ZARA ORCHID", "ZARA RED", "ZARA ROSE",
+  "ZEENAT", "ZIYARAT", "ZX", "ASIF SIGNATURE 1O"
+];
+
+// 1. ADD YOUR CUSTOM OVERRIDES HERE (Key = Exact Attar Name, Value = Custom Price in INR)
+const CUSTOM_PRICE_MAP: Record<string, number> = {
+  "AMBAR OUDH (HARMAIN)": 490,
+  "AMIR AL OUD": 450,
+  "B.R. 540": 690,
+  "CREED SILVER MOUNTAIN": 590,
+  "HAWAS ICE": 450,
+  "T.F OUDH WOOD": 650,
+  "TURKISH OUDH": 490,
+  "ASIF SIGNATURE 1O": 890,
+  "1000 FLOWER": 420,
+};
+
+// 2. PRICING LOGIC
+function getCustomPrice(name: string): number {
+  const upperName = name.trim().toUpperCase();
+
+  // Return specific override price if defined
+  if (CUSTOM_PRICE_MAP[upperName] !== undefined) {
+    return CUSTOM_PRICE_MAP[upperName];
+  }
+
+  // Automatic rule fallback for high-end niche/designer brands
+  if (upperName.includes("CREED") || upperName.includes("T.F") || upperName.includes("L.V")) return 590;
+  if (upperName.includes("OUD") || upperName.includes("AGARWOOD")) return 450;
+  if (upperName.includes("GISSAH") || upperName.includes("LATTAFA")) return 420;
+
+  // Default base price for all other standard attars
+  return 390;
+}
+
+function getCategory(name: string): string {
+  const upper = name.toUpperCase();
+  if (upper.includes("OUD") || upper.includes("AGARWOOD")) return "Oud Collection";
+  if (upper.includes("ROSE") || upper.includes("GULAB") || upper.includes("FLOWER") || upper.includes("JASMINE") || upper.includes("JUHI") || upper.includes("MOGRA") || upper.includes("RAAT RANI")) return "Floral";
+  if (upper.includes("MUSK") || upper.includes("THARA") || upper.includes("KASTURI")) return "Musk Collection";
+  if (upper.includes("CHOCO") || upper.includes("VANILLA") || upper.includes("PEACH") || upper.includes("BERRY") || upper.includes("MANGO") || upper.includes("LECHI") || upper.includes("ORANGE") || upper.includes("CHOCOLATE")) return "Gourmand & Fruity";
+  if (upper.includes("AQUA") || upper.includes("BLUE") || upper.includes("COOL") || upper.includes("ICE") || upper.includes("SWIM")) return "Fresh & Aqua";
+  if (upper.includes("ARABIAN") || upper.includes("GISSAH") || upper.includes("LATTAFA") || upper.includes("HARMAIN") || upper.includes("AJMAL") || upper.includes("MUKHALLAT") || upper.includes("BAKHOOR") || upper.includes("DIRHAM")) return "Arabic & Oriental";
+  return "Designer Fragrance Oils";
+}
+
+export const ALL_PERFUME_OILS: PerfumeOil[] = rawPerfumesList.map((name, index) => ({
+  id: index + 1,
+  name,
+  size: "12 ML",
+  price: getCustomPrice(name),
+  category: getCategory(name),
+  image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop"
+}));
